@@ -1,0 +1,32 @@
+<div class="container">
+    <div *ngIf="tarefas.length == 0">
+      <button type="button" class="btn btn-primary" routerLink="/tarefas/cadastrar">Nova tarefa</button>
+      <p class="table-warning">Não há tarefas adicionados ainda!</p>
+    </div>
+  
+    <div  *ngIf="tarefas.length !== 0" class="table-responsive">
+      <h3>Lista tarefas</h3>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Descição</th>
+            <th scope="col">Concluído</th>
+            <th scope="col">Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of tarefas">
+            <td>{{ item.descricao }}</td>
+            <td> <input type="checkbox" (click)="alternarTarefaComplete(item)" [checked]="item.concluido"></td>
+            <td>
+              <div class="">
+                <button  type="button" class="btn btn-warning" style="margin-right: 10px;" routerLink="/tarefas/{{item.id}}">Editar</button>
+                 <button type="button" class="btn btn-danger" (click)="excluirTarefa(item.id)">Excluir</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

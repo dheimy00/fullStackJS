@@ -1,0 +1,33 @@
+<div class="container">
+    <form novalidate   [formGroup]="form"  (ngSubmit)="submitForm(form)" >
+      <div class="row" *ngIf="showMessage">
+      <div class="col-12">
+        <p class="alert alert-success">
+            <strong>Cadastro foi sucesso!</strong> 
+        </p>
+      </div>
+    </div>
+      
+      <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label  for="descricao">Descrição:</label><span>*</span>
+        <input class="f" type="text"  id="descricao" class="form-control" name="descricao" [(ngModel)]="novaTarefa.descricao" formControlName="descricao"  placeholder="Descrição"/>
+          <ul *ngIf="(formSubmitted || form.controls['descricao'].dirty) && form.controls['descricao'].invalid">
+            <li *ngFor="let error of form.controls['descricao'].getValidationMessages()">
+              <span>*</span> {{error}}
+              </li>
+          </ul>
+      </div>
+    </div>
+     
+        </div>
+     
+      
+         <br>
+        <button type="button" class="btn btn-primary" style="margin-right: 10px;" type="submit" [disabled]="formSubmitted && form.invalid"
+        [class.btn-secondary]="formSubmitted && form.invalid"  >Salvar</button>
+    
+        <button type="button" class="btn btn-light" type="reset">Limpar</button>
+      </form>
+    </div>
